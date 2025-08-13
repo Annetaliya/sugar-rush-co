@@ -1,6 +1,9 @@
 "use client";
 import Swal from "sweetalert2";
 import { Formik, Form, Field, ErrorMessage, FormikHelpers  } from "formik";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/auth/authSlice";
+import { AppDispatch } from "@/redux/userStore";
 
 type LoginFormValues = {
     email: string;
@@ -8,6 +11,7 @@ type LoginFormValues = {
 }
 
 const LoginForm  = () => {
+    const dispatch = useDispatch<AppDispatch>()
 
 
     const validate = (values: LoginFormValues) => {
@@ -54,7 +58,19 @@ const LoginForm  = () => {
         
         return;
       }
-        localStorage.setItem("token", result.token);
+        dispatch(
+            setUser({
+                user: {
+                    id: result.user.id,
+                    first_name: result.user.first_name,
+                    second_name: result.user.second_name,
+                    email: result.user.email,
+                    phone: result.user.phone,
+                    role: result.user.user_metadata?.role || "",
+                },
+                session: result.data.session
+            })
+        )
         localStorage.setItem("user", JSON.stringify(result.user));
         Swal.fire({
             title: "Good Job",
