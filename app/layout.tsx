@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Italiana, Roboto } from "next/font/google";
 import "./globals.css";
 import { ReduxProvider } from "@/redux/provider";
+import NavBar from "@/components/NavBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,7 +41,10 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${italiana.variable} ${roboto.variable} antialiased`}
-      ><ReduxProvider>{children}</ReduxProvider>
+      >
+        <NavBar />
+        <ReduxProvider>{children}</ReduxProvider>
+      
        
       </body>
     </html>
