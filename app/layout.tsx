@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Italiana, Roboto } from "next/font/google";
 import "./globals.css";
+import { ReduxProvider } from "@/redux/provider";
+import NavBar from "@/components/NavBar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,6 +13,18 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const italiana = Italiana({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--headerText",
+});
+
+const roboto = Roboto({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--smallText",
 });
 
 export const metadata: Metadata = {
@@ -25,9 +40,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${italiana.variable} ${roboto.variable} antialiased`}
       >
-        {children}
+        <NavBar />
+        <ReduxProvider>{children}</ReduxProvider>
+      
+       
       </body>
     </html>
   );
