@@ -126,5 +126,29 @@ div, p {
 
   }
 }
-
+.productImage {
+  height: 300px;
+}
+.productsContainer {
+  cursor: pointer;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 3 columns */
+  gap: 4rem; 
+  margin-left: 2rem;
+  margin-right: 2rem;
+  margin-top: 3rem;
+  
+}
+.secondProductContainer {
+  background-color: #D9D9D9;
+  border-radius: 8px;
+}
+.cartBtn {
+  color: #fff;
+  background: #000;
+  padding: 4px 12px;
+  outline: none;
+  border-radius: 4px;
+}
 
