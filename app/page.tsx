@@ -1,6 +1,7 @@
 "use client"
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 type Product = {
   product_id: string;
@@ -10,10 +11,12 @@ type Product = {
   stock_quantity: number;
   image_url?: string;
 }
-
 export default function Home() {
 
-const [product, setProduct] = useState<Product[]>([]);;
+const [product, setProduct] = useState<Product[]>([]);
+const router = useRouter()
+
+
 
 async function fetchProducts() {
   try {
@@ -35,6 +38,13 @@ async function fetchProducts() {
     fetchProducts()
 
   }, [])
+
+  const handleViewProduct = (item: Product) => {
+    localStorage.setItem('selectedProduct', JSON.stringify(item))
+    router.push(`/products/${item.product_id}`)
+    console.log('product selected details:', item)
+
+  }
   return (
     <div className="font-sans min-h-screen p-0 m-0">
       <div className="heroImage pb-6">
@@ -50,7 +60,7 @@ async function fetchProducts() {
       <div className="productsContainer">
       {product.length > 0 ? 
       product.map((item) => (
-        <div key={item.product_id} className="secondProductContainer drop-shadow-md ">
+        <div key={item.product_id} onClick={() => handleViewProduct(item)} className="secondProductContainer drop-shadow-md">
           <img className="productImage transform transition-transform duration-300 ease-in-out hover:scale-90" src={item.image_url} alt="dessert"/>
           <div className="mt-4 pl-3">
             <h3 className="font-extrabold text-lg pb-2">{item.name}</h3>
