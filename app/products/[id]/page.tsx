@@ -1,4 +1,4 @@
-"use client"; // ✅ lowercase "client"
+"use client"; 
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -15,6 +15,7 @@ type Product = {
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
+  const [quantity, setQuantity] = useState(1)
 
   useEffect(() => {
     if (!id) return;
@@ -25,7 +26,7 @@ export default function ProductDetails() {
       const parsed = JSON.parse(localProduct) as Product;
       if (parsed.product_id === id) {
         setProduct(parsed);
-        return; // ✅ stop here, no need to fetch
+        return; 
       }
     }
 
@@ -51,15 +52,47 @@ export default function ProductDetails() {
   if (!product) return <p>Loading...</p>;
 
   return (
-    <div>
-      <img
-        src={product.image_url}
-        alt={product.name}
-        className="w-64 h-64 object-cover"
-      />
-      <h1 className="text-3xl font-bold mt-4">{product.name}</h1>
-      <p className="mt-2">{product.description}</p>
-      <p className="mt-2 text-xl font-semibold">${product.price}.00</p>
+    <div className="flex justify-center gap-6">
+        <div className="ml-8 mt-8">
+            <img
+            src={product.image_url}
+            alt={product.name}
+            className="w-64 h-64 object-cover"
+            />
+            <div className="max-w-80 mt-8">
+                <p className="mt-2">{product.description}</p>
+
+            </div>
+            
+            
+        </div>
+        <div className="product-details bg-zinc-200 ml-8 mt-6 pl-4 pr-4 drop-shadow-xl ">
+            <h1 className="text-2xl font-bold mt-4 pb-4">{product.name}</h1>
+            
+            <p className="mt-2 text-xl font-semibold pb-4">${product.price}.00</p>    
+            
+            <div className="flex items-center gap-4 pb-6">
+                <p className="pb-4">Quantity:</p>
+                <button 
+                    className="addBtn bg-zinc-50"
+                    onClick={() => setQuantity((prev) => prev < product.stock_quantity ? prev + 1 : prev)}
+                    >
+                        +
+                </button>
+                <span className="px-2 font-semibold">{quantity}</span>
+                <button 
+                    className="addBtn bg-zinc-50"
+                    onClick={() => setQuantity((prev) => prev > 1 ? prev - 1 : 1)}
+                    >
+                    -
+                </button>
+            </div>
+            <button className="cartBtn">Add to cart</button>
+            
+            
+        </div>
+      
+      
     </div>
   );
 }
