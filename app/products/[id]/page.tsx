@@ -2,6 +2,9 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { addToCart } from "@/redux/auth/cartSlice";
+import { useAppDispatch } from "@/redux/userStore";
+import { useAppSelector } from "@/redux/userStore";
 
 type Product = {
   product_id: string;
@@ -15,7 +18,10 @@ type Product = {
 export default function ProductDetails() {
   const { id } = useParams<{ id: string }>();
   const [product, setProduct] = useState<Product | null>(null);
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(1);
+
+  const dispatch = useAppDispatch();
+  const cartItems = useAppSelector((state) => state.cart.items)
 
   useEffect(() => {
     if (!id) return;
@@ -48,6 +54,26 @@ export default function ProductDetails() {
 
     fetchProduct();
   }, [id]);
+
+  const handleAddToCart = () => {
+    if (!product) return
+
+    dispatch(
+      addToCart({
+        product_id: product.product_id,
+        name: product.name,
+        price: product.price,
+        image_url: product.image_url ?? "",
+        quantity,
+
+      })
+    )
+   
+  }
+
+  useEffect(() => {
+  console.log("Cart updated:", cartItems);
+}, [cartItems]);
 
   if (!product) return <p>Loading...</p>;
 
@@ -87,7 +113,7 @@ export default function ProductDetails() {
                     -
                 </button>
             </div>
-            <button className="cartBtn">Add to cart</button>
+            <button onClick={handleAddToCart} className="cartBtn">Add to cart</button>
             
             
         </div>

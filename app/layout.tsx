@@ -42,8 +42,11 @@ export default function RootLayout({
       <body
         className={`${italiana.variable} ${roboto.variable} antialiased`}
       >
-        <NavBar />
-        <ReduxProvider>{children}</ReduxProvider>
+        
+        <ReduxProvider>
+          <NavBar />
+          {children}
+        </ReduxProvider>
       
        
       </body>

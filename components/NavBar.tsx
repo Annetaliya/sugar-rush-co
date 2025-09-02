@@ -4,13 +4,7 @@ import { CiSearch } from "react-icons/ci";
 import { CiShoppingCart } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
 import Link from "next/link";
-
-// type NavElem = {
-//     Shop: string;
-//     Categories: string;
-//     Locations: string;
-//     Goods: string
-// }
+import { useAppSelector } from "@/redux/userStore";
 
 const navItems = [
   { label: "SHOP", href: "/shop" },
@@ -20,6 +14,9 @@ const navItems = [
 ];
 
 const NavBar = () => {
+
+  const cartItems = useAppSelector((state) => state.cart.items)
+  const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   return (
 
     <div className=''>
@@ -39,7 +36,14 @@ const NavBar = () => {
             <h1 className='text-2xl'>Sugar Rush Co.</h1>
             <div className='flex gap-4 pr-4'>
                 <CiSearch size={25}/>
-                <CiShoppingCart size={25} />
+                <div className="relative">
+                  <CiShoppingCart size={25} />
+                  {totalQuantity > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                      {totalQuantity}
+                    </span>
+                  )}
+                </div>
                 <CiUser size={25}/>
             </div>
             
