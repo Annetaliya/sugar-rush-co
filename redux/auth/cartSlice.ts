@@ -14,9 +14,9 @@ type CartItem = {
 type CartState = {
     items: CartItem[]
 }
-const savedCart = typeof window !== 'undefined' ? localStorage.getItem('cartItems') : null
 
-const initialState : CartState = {items: savedCart ? JSON.parse(savedCart) : []}
+
+const initialState : CartState = {items: []}
 
 const cartSlice = createSlice({
     name: 'cart',
