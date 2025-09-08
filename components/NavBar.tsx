@@ -11,6 +11,7 @@ const navItems = [
   { label: "CATEGORIES", href: "/categories" },
   { label: "LOCATIONS", href: "/locations" },
   { label: "GOODS", href: "/goods" },
+ 
 ];
 
 const NavBar = () => {
@@ -36,14 +37,14 @@ const NavBar = () => {
             <h1 className='text-2xl'>Sugar Rush Co.</h1>
             <div className='flex gap-4 pr-4'>
                 <CiSearch size={25}/>
-                <div className="relative">
+                <Link href="/cart" className="relative">
                   <CiShoppingCart size={25} />
                   {totalQuantity > 0 && (
                     <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
                       {totalQuantity}
                     </span>
                   )}
-                </div>
+                </Link>
                 <CiUser size={25}/>
             </div>
             

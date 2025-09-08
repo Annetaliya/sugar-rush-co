@@ -150,6 +150,7 @@ div, p {
   padding: 4px 12px;
   outline: none;
   border-radius: 4px;
+  cursor: pointer;
 }
 .addBtn {
   padding: 4px 12px;

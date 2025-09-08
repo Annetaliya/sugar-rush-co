@@ -43,10 +43,10 @@ const Cart = () => {
             }
         </div>
         <div>
-            <h2>Total: ${total}</h2>
+            <h2 className="pt-6 text-3xl">Total: ${total}</h2>
             <button 
                 onClick={() => dispatch(clearCart())}
-                className="cartBtn"
+                className="cartBtn mt-4"
                 >
                 Clear cart
 
