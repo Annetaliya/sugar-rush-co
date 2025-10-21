@@ -33,7 +33,7 @@ const Cart = () => {
                     </div>
                     <button 
                         onClick={() => dispatch(removeFromCart(item.product_id))}
-                        className="cartBtn"
+                        className=""
                         >
                         Remove
                     </button>
@@ -46,7 +46,7 @@ const Cart = () => {
             <h2 className="pt-6 text-3xl">Total: ${total}</h2>
             <button 
                 onClick={() => dispatch(clearCart())}
-                className="cartBtn mt-4"
+                className="mt-4"
                 >
                 Clear cart
 
