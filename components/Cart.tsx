@@ -2,6 +2,7 @@
 import { useAppSelector, useAppDispatch } from "@/redux/userStore";
 import { removeFromCart, clearCart } from "@/redux/auth/cartSlice";
 import React from 'react'
+import { MdOutlineDeleteOutline } from "react-icons/md";
 
 type Product = {
   product_id: string;
@@ -18,12 +19,12 @@ const Cart = () => {
 
     const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0 )
   return (
-    <div className="flex gap-4">
+    <div className="">
         <h1 className="text-center text-3xl pt-6">Your Cart</h1>
-        <div>
+        <div className="flex justify-center">
             {cartItems.length === 0 ? <p>No items</p> 
             : cartItems.map((item) => (
-                <li key={item.product_id}>
+                <li  className='cartList' key={item.product_id}>
                     <div>
                         <img className='productImage' src={item.image_url} alt='cookies' />
                         <div>
@@ -35,7 +36,7 @@ const Cart = () => {
                         onClick={() => dispatch(removeFromCart(item.product_id))}
                         className=""
                         >
-                        Remove
+                        <MdOutlineDeleteOutline size={25}/>
                     </button>
 
                 </li>
@@ -46,7 +47,7 @@ const Cart = () => {
             <h2 className="pt-6 text-3xl">Total: ${total}</h2>
             <button 
                 onClick={() => dispatch(clearCart())}
-                className="mt-4"
+                className="clearBtn"
                 >
                 Clear cart
 

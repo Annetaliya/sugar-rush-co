@@ -94,7 +94,7 @@ export default function ProductDetails() {
             
             
         </div>
-        <div className="product-details bg-zinc-200 ml-8 mt-6 pl-4 pr-4 drop-shadow-xl ">
+        <div className=" bg-zinc-200 ml-8 mt-6 pl-4 pr-4 drop-shadow-xl relative">
             <h1 className="text-2xl font-bold mt-4 pb-4">{product.name}</h1>
             
             <p className="mt-2 text-xl font-semibold pb-4">${product.price}.00</p>    
@@ -115,7 +115,7 @@ export default function ProductDetails() {
                     -
                 </button>
             </div>
-            <button onClick={handleAddToCart} className="cartBtn">Add to cart</button>
+            <button onClick={handleAddToCart} className="cartBtn2">Add to cart</button>
             
             
         </div>
