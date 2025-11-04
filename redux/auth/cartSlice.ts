@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 
+
 type CartItem = {
     product_id: string;
     quantity: number;
@@ -39,6 +40,7 @@ const cartSlice = createSlice({
         },
         clearCart: (state) => {
             state.items = []
+            localStorage.removeItem('cartItems')
 
         },
     }

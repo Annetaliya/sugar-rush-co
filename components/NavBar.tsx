@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useAppSelector } from "@/redux/userStore";
 
 const navItems = [
-  { label: "SHOP", href: "/shop" },
+  { label: "SHOP", href: "/" },
   { label: "CATEGORIES", href: "/categories" },
   { label: "LOCATIONS", href: "/locations" },
   { label: "GOODS", href: "/goods" },
