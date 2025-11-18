@@ -2,11 +2,10 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { MdOutlineAttachEmail } from "react-icons/md";
-import { MdOutlinePhone } from "react-icons/md";
 import { FaSquareInstagram } from "react-icons/fa6";
 import { FaFacebook } from "react-icons/fa6";
 import { FaSquareXTwitter } from "react-icons/fa6";
+import { useAppSelector } from "@/redux/userStore";
 
 type Product = {
   product_id: string;
@@ -19,8 +18,11 @@ type Product = {
 export default function Home() {
 
 const [product, setProduct] = useState<Product[]>([]);
-const [loading, setLoading] = useState(false)
+const [loading, setLoading] = useState(false);
 const router = useRouter()
+const searchQuery = useAppSelector((state) => state.search.query)
+
+
 
 
 
@@ -46,6 +48,10 @@ async function fetchProducts() {
     fetchProducts()
 
   }, [])
+
+  const filteredProducts = product.filter((item) => 
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
   if (loading) {
     return (
@@ -84,8 +90,8 @@ async function fetchProducts() {
         
       </div>
       <div className="productsContainer mb-8 pb-8">
-      {product.length > 0 ? 
-      product.map((item) => (
+      {filteredProducts.length > 0 ? 
+      filteredProducts.map((item) => (
         <div key={item.product_id} onClick={() => handleViewProduct(item)} className="secondProductContainer drop-shadow-md">
           <img className="productImage transform transition-transform duration-1000 ease-in-out hover:scale-90" src={item.image_url} alt="dessert"/>
           <div className="mt-4 pl-3">
@@ -101,8 +107,14 @@ async function fetchProducts() {
       ))
       : <p>No Items</p>
       }
-      
+      </div>
+      <div className="secretMenuContainer">
+        <div className="menuChildContainer">
+          <h2 className="text-center text-4xl text-white">New weekly secret menu</h2>
+          <p className="text-white text-center">Follow us on social media to see more</p>
 
+        </div>
+        
       </div>
       <div>
         <hr className="w-1/2 mx-auto border-none h-[2px] bg-gray-400"></hr>
