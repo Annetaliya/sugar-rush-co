@@ -2,6 +2,10 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { FaSquareInstagram } from "react-icons/fa6";
+import { FaFacebook } from "react-icons/fa6";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { useAppSelector } from "@/redux/userStore";
 
 type Product = {
   product_id: string;
@@ -14,8 +18,11 @@ type Product = {
 export default function Home() {
 
 const [product, setProduct] = useState<Product[]>([]);
-const [loading, setLoading] = useState(false)
+const [loading, setLoading] = useState(false);
 const router = useRouter()
+const searchQuery = useAppSelector((state) => state.search.query)
+
+
 
 
 
@@ -42,6 +49,10 @@ async function fetchProducts() {
 
   }, [])
 
+  const filteredProducts = product.filter((item) => 
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
+
   if (loading) {
     return (
       <div className="flex justify-center mt-2">
@@ -65,7 +76,7 @@ async function fetchProducts() {
   }
   return (
     <div className="font-sans min-h-screen p-0 m-0">
-      <div className="heroImage pb-6">
+      <div className="heroImage pb-8">
         <h2 className="font-extrabold text-white text-center text-8xl pt-10 heroHeader">Bake. Bite. Bliss</h2>
         <p className="text-center text-2xl text-white heroParagraph">Your new favourite cookie is here.</p>
        
@@ -73,11 +84,14 @@ async function fetchProducts() {
       <div>
         <h1 className="text-4xl pt-8 pb-4 ml-2 text-center">Where everybite feels like home</h1>
         <p className="ml-2 text-center text-gray-500">Freshly baked, handcrafted cookies made with love and the finest ingredients.<br />Delivered right to your doorstep.</p>
-        <button className="explore ml-2">Explore</button>
+        <div className="flex justify-center">
+          <button className="explore ml-2">Explore</button>
+        </div>
+        
       </div>
-      <div className="productsContainer">
-      {product.length > 0 ? 
-      product.map((item) => (
+      <div className="productsContainer mb-8 pb-8">
+      {filteredProducts.length > 0 ? 
+      filteredProducts.map((item) => (
         <div key={item.product_id} onClick={() => handleViewProduct(item)} className="secondProductContainer drop-shadow-md">
           <img className="productImage transform transition-transform duration-1000 ease-in-out hover:scale-90" src={item.image_url} alt="dessert"/>
           <div className="mt-4 pl-3">
@@ -93,8 +107,51 @@ async function fetchProducts() {
       ))
       : <p>No Items</p>
       }
-      
+      </div>
+      <div className="secretMenuContainer">
+        <div className="menuChildContainer">
+          <h2 className="text-center text-4xl text-white">New weekly secret menu</h2>
+          <p className="text-white text-center">Follow us on social media to see more</p>
 
+        </div>
+        
+      </div>
+      <div>
+        <hr className="w-1/2 mx-auto border-none h-[2px] bg-gray-400"></hr>
+        <div className="flex justify-around pt-8">
+          <div className="flex-col gap-2 text-gray-500 ">
+            <p className='pb-2'>About Us</p>
+            <p className='pb-2'>Contact Us</p>
+            <p className='pb-2'>FAQ'S</p>
+            <p>Terms of Service</p>
+          </div>
+          <div className="flex-col gap-2 text-gray-500 ">
+            <p className='pb-2'>Blog</p>
+            <p className='pb-2'>Press</p>
+            <p className='pb-2'>Support</p>
+            <p>Help center</p>
+          </div>
+          <div className="flex-col gap-2 text-gray-500">
+            <p className='pb-2'>Events</p>
+            <p className='pb-2'>Community</p>
+            <p className='pb-2'>Newsletter</p>
+            <p>Social Media</p>
+          </div>
+          
+        </div>
+        
+        <div className="flex flex-col justify-center items-center pt-4">
+          <div className="flex gap-4">
+             <FaSquareInstagram size={25}/>
+            <FaFacebook size={25}/>
+            <FaSquareXTwitter size={25}/>
+
+          </div>
+          
+         
+
+        </div>
+      
       </div>
     
       
