@@ -20,7 +20,6 @@
     --foreground: #ededed;
   }
 }
-
 body {
   background: var(--background);
   color: var(--foreground);
@@ -217,4 +216,19 @@ div, p {
   padding: 0.4rem 0.6rem;
   background-color: #efe1d5;
   border-radius: 10px;
+
 }
+@media(max-width: 768px){
+	.navParent {
+		display: none;
+		}
+	.menuBar {
+		display: block;
+		}
+	}
+
+.menuBar {
+	display: flex;
+	justify-content: right;
+	display: none;
+	}
