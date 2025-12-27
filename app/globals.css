@@ -141,6 +141,14 @@ div, p {
   margin-top: 3rem;
   
 }
+@media screen and (width <= 700px) {
+	.productsContainer {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 5%;
+
+		}
+	}
 /* .secondProductContainer {
   background-color: #D9D9D9;
   border-radius: 8px;
