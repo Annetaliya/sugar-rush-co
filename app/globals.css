@@ -125,8 +125,15 @@ div, p {
 
   }
 }
+
+@media (max-width: 768px) {
+	.heroImage{
+		display: none;
+		}
+	}
 .productImage {
   height: 250px;
+  max-width: 100%;
 }
 .productsContainer {
   cursor: pointer;
@@ -145,7 +152,8 @@ div, p {
 	.productsContainer {
 		display: grid;
 		grid-template-columns: 1fr;
-		gap: 5%;
+		gap: 2%;
+		margin-top: 0.5rem;
 
 		}
 	}
@@ -226,17 +234,37 @@ div, p {
   border-radius: 10px;
 
 }
-@media(max-width: 768px){
-	.navParent {
-		display: none;
-		}
-	.menuBar {
-		display: block;
-		}
-	}
 
 .menuBar {
 	display: flex;
 	justify-content: right;
 	display: none;
 	}
+@media(max-width: 768px){
+	.navParent {
+		display: none;
+		}
+	.menuBar {
+		display: block;
+		display: flex;
+		justify-content: right;
+		
+		}
+    .secondaryNav{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+    }
+	}
+
+  .mainNav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    gap: 20px;
+  }
+
+

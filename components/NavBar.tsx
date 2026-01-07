@@ -15,6 +15,7 @@ const navItems = [
 ];
 
 const NavBar = () => {
+  const [show, setShow] = useState(false)
   const dispatch  = useAppDispatch()
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,56 +23,61 @@ const NavBar = () => {
   }
 
 
+
+
   const cartItems = useAppSelector((state) => state.cart.items);
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   return (
-    <div className="navParent">
-      <div className="navHeader">
-        <div className="track">
-          <p className="slide text-sm">Deal One: 50% Off</p>
-          <p className="slide text-sm">Deal Two: Free Shipping</p>
-          <p className="slide text-sm">Deal Three: Buy 1 Get 1 Free</p>
-        </div>
-      </div>
-	  <div className='menuBar'>
-	  	<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-  			<path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 					1H3a.5.5 0 0 1-.5-.5"/>
-		</svg>
-	  </div>
-      <div className="flex pb-4 pt-4 justify-between gap-12 items-center">
-        <div></div>
-        <h1 className="text-2xl">Sugar Rush Co.</h1>
-        <div className="flex gap-4 pr-4">
-          <div className="flex justify-center gap-2">
-            <input
-              type="text"
-              onChange={handleChange}
-  
-              placeholder="search..."
-              className="serchInput"
-            />
-            <CiSearch size={25} />
+    <>
+      <div className="navParent">
+        <div className="navHeader">
+          <div className="track">
+            <p className="slide text-sm">Deal One: 50% Off</p>
+            <p className="slide text-sm">Deal Two: Free Shipping</p>
+            <p className="slide text-sm">Deal Three: Buy 1 Get 1 Free</p>
           </div>
-
-          <Link href="/cart" className="relative">
-            <CiShoppingCart size={25} />
-            {totalQuantity > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                {totalQuantity}
-              </span>
-            )}
-          </Link>
-          <CiUser size={25} />
         </div>
+      
+        <div className={`mainNav ${show ? 'secondaryNav' : ''}`}>
+          <div></div>
+          <h1 className="text-2xl">Sugar Rush Co.</h1>
+          <div className="flex gap-4 pr-4">
+            <div className="flex justify-center gap-2">
+              <input
+                type="text"
+                onChange={handleChange}
+    
+                placeholder="search..."
+                className="serchInput"
+              />
+              <CiSearch size={25} />
+            </div>
+
+            <Link href="/cart" className="relative">
+              <CiShoppingCart size={25} />
+              {totalQuantity > 0 && (
+                <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                  {totalQuantity}
+                </span>
+              )}
+            </Link>
+            <CiUser size={25} />
+          </div>
+        </div>
+        <ul className="bg-black  flex gap-16 justify-center pt-2 pb-2">
+          {navItems.map((elem, index) => (
+            <li key={index} className="listHover text-sm">
+              <Link href={elem.href}>{elem.label}</Link>
+            </li>
+          ))}
+        </ul>
       </div>
-      <ul className="bg-black  flex gap-16 justify-center pt-2 pb-2">
-        {navItems.map((elem, index) => (
-          <li key={index} className="listHover text-sm">
-            <Link href={elem.href}>{elem.label}</Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <div className='menuBar' onClick={() => setShow(!show)}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
+          <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 					1H3a.5.5 0 0 1-.5-.5"/>
+        </svg>
+      </div>
+    </>
   );
 };
 
