@@ -29,7 +29,7 @@ const NavBar = () => {
   const totalQuantity = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   return (
     <>
-      <div className="navParent">
+      <div >
         <div className="navHeader">
           <div className="track">
             <p className="slide text-sm">Deal One: 50% Off</p>
@@ -38,7 +38,7 @@ const NavBar = () => {
           </div>
         </div>
       
-        <div className={`mainNav ${show ? 'secondaryNav' : ''}`}>
+        <div>
           <div></div>
           <h1 className="text-2xl">Sugar Rush Co.</h1>
           <div className="flex gap-4 pr-4">
@@ -64,7 +64,12 @@ const NavBar = () => {
             <CiUser size={25} />
           </div>
         </div>
-        <ul className="bg-black  flex gap-16 justify-center pt-2 pb-2">
+        <div className='menuBar' onClick={() => setShow(!show)}>
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
+          <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 					1H3a.5.5 0 0 1-.5-.5"/>
+        </svg>
+      </div>
+        <ul className={`navParent ${show ? 'secondaryNav': ''}`}>
           {navItems.map((elem, index) => (
             <li key={index} className="listHover text-sm">
               <Link href={elem.href}>{elem.label}</Link>
@@ -72,11 +77,7 @@ const NavBar = () => {
           ))}
         </ul>
       </div>
-      <div className='menuBar' onClick={() => setShow(!show)}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-list" viewBox="0 0 16 16">
-          <path fillRule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 					1H3a.5.5 0 0 1-.5-.5"/>
-        </svg>
-      </div>
+      
     </>
   );
 };

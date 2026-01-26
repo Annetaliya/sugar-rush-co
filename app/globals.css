@@ -255,16 +255,22 @@ div, p {
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+      position: absolute;
+      top: 60px;
+      right: 0;
+
     }
 	}
 
-  .mainNav {
+  .navParent {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-bottom: 1rem;
     padding-top: 1rem;
     gap: 20px;
+    background-color: black;
   }
+
 
 
