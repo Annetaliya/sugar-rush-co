@@ -154,6 +154,8 @@ div, p {
 		grid-template-columns: 1fr;
 		gap: 2%;
 		margin-top: 0.5rem;
+    justify-items: center;
+    margin-bottom: 16rem;
 
 		}
 	}
@@ -183,6 +185,7 @@ div, p {
   bottom: 0;
   left: 0;
   right: 0;
+  width: 200px;
 
 }
 .addBtn {
@@ -234,6 +237,15 @@ div, p {
   border-radius: 10px;
 
 }
+.navParent {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    gap: 20px;
+    background-color: black;
+  }
 
 .menuBar {
 	display: flex;
@@ -248,6 +260,9 @@ div, p {
 		display: block;
 		display: flex;
 		justify-content: right;
+    position:absolute;
+    top: 65px;
+    right: 0;
 		
 		}
     .secondaryNav{
@@ -256,21 +271,16 @@ div, p {
       align-items: center;
       justify-content: space-between;
       position: absolute;
-      top: 60px;
+      top: 100px;
       right: 0;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+
 
     }
 	}
 
-  .navParent {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-    gap: 20px;
-    background-color: black;
-  }
+  
 
 
 
