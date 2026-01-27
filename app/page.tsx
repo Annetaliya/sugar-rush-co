@@ -1,5 +1,4 @@
 "use client"
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { FaSquareInstagram } from "react-icons/fa6";
@@ -122,7 +121,7 @@ async function fetchProducts() {
           <div className="flex-col gap-2 text-gray-500 ">
             <p className='pb-2'>About Us</p>
             <p className='pb-2'>Contact Us</p>
-            <p className='pb-2'>FAQ'S</p>
+            <p className='pb-2'>FAQS</p>
             <p>Terms of Service</p>
           </div>
           <div className="flex-col gap-2 text-gray-500 ">
