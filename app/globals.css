@@ -275,6 +275,7 @@ div, p {
       right: 0;
       padding: 0.5rem 1rem;
       border-radius: 10px;
+      z-index: 1;
 
 
     }
