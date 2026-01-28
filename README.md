@@ -21,9 +21,8 @@
   ## Website Mockup 
 (https:/<img width="3152" height="1405" alt="cookie shop" src="https://github.com/user-attachments/assets/2df19e7f-9798-49af-86ab-4d21db253a3e" />
 
-## website url
-
-(https://sugar-rush-co-fyva-ehsypryvj-annettes-projects-70970dfb.vercel.app/)
+## Live Demo
+[Live Demo Link](https://sugar-rush-co-xj37.vercel.app/)
 
 # Authors
 
